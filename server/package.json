@@ -13,8 +13,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
+    "express-fileupload": "^1.5.1",
     "nodemon": "^3.1.7"
   }
 }
