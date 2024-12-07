@@ -2,6 +2,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs";
 import { fileUpload } from "../utils/fileUpload.js";
+import { getContent } from "../utils/genContent.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,17 +20,14 @@ export const uploadFile = async (req, res) => {
       fs.mkdirSync(uploadDir);
     }
 
-    
     const uploadPath = path.join(uploadDir, videoFile.name);
 
     await videoFile.mv(uploadPath);
 
     const response = await fileUpload(uploadPath, req.files.video);
-    console.log(response);
+    const genContent = await getContent(response);
 
-    return res
-      .status(200)
-      .json({ message: "File uploaded successfully", filePath: uploadPath });
+    return res.status(200).json({ subs: genContent });
   } catch (error) {
     console.error("Error uploading video:", error);
     return res

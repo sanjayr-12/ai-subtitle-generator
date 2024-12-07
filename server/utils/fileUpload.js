@@ -6,8 +6,6 @@ export const fileManager = new GoogleAIFileManager(process.env.API_KEY);
 
 export async function fileUpload(path, videoData) {
   try {
-    console.log(videoData.name);
-
     const uploadResponse = await fileManager.uploadFile(path, {
       mimeType: "video/mp4",
       displayName: videoData.name,
@@ -22,7 +20,7 @@ export async function fileUpload(path, videoData) {
     if (file.state === FileState.FAILED) {
       throw new Error("Video processing failed");
     }
-    return file.uri;
+    return file;
   } catch (error) {
     throw error;
   }
