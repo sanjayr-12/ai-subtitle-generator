@@ -25,6 +25,7 @@ export const uploadFile = async (req, res) => {
     await videoFile.mv(uploadPath);
 
     const response = await fileUpload(uploadPath, req.files.video);
+
     const genContent = await getContent(response);
 
     return res.status(200).json({ subs: genContent });

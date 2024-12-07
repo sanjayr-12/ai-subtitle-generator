@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const App = () => {
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget);
